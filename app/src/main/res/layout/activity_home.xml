@@ -3,11 +3,19 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:layout_gravity="center"
-        android:textSize="16sp"
+        style="@style/TitleStyle"
+        android:text="功能列表"
+       />
+    <TextView
+        android:text="秋天秋天悄悄离去，留下小秘密，亚西米亚西米,真的好甜蜜。。。。。。"
         android:textColor="#000"
-        android:text="Home主界面"
-        android:layout_width="wrap_content"
+        android:textSize="16dp"
+        android:padding="5dp"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:singleLine="true"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 </LinearLayout>
