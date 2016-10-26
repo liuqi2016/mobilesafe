@@ -6,16 +6,21 @@
         style="@style/TitleStyle"
         android:text="功能列表"
        />
-    <TextView
+    <event.study.liuqi.mobilesafe.view.FocusTextView
         android:text="秋天秋天悄悄离去，留下小秘密，亚西米亚西米,真的好甜蜜。。。。。。"
         android:textColor="#000"
         android:textSize="16dp"
         android:padding="5dp"
         android:ellipsize="marquee"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
         android:singleLine="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <GridView
+        android:verticalSpacing="5dp"
+        android:id="@+id/gv_app"
+        android:numColumns="3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
