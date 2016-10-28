@@ -21,6 +21,10 @@ public class SettingItemView extends RelativeLayout {
     private CheckBox cb_box;
     private String mDeson;
     private String mDesoff;
+    private String NAME_SPACE = "http://schemas.android.com/apk/res/event.study.liuqi.mobilesafe";;
+    private String destitle;
+    private String desoff;
+    private String deson;
 
     public SettingItemView(Context context) {
         this(context,null);
@@ -37,6 +41,20 @@ public class SettingItemView extends RelativeLayout {
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_des = (TextView) findViewById(R.id.tv_des);
         cb_box = (CheckBox) findViewById(R.id.cb_box);
+        //获取自定义及原生属性的操作
+        initAttr(attrs);
+        //设置内容
+        tv_title.setText(destitle);
+    }
+
+    /**
+     * 返回属性集合中的自定义属性值
+     * @param attrs
+     */
+    private void initAttr(AttributeSet attrs) {
+        destitle = attrs.getAttributeValue(NAME_SPACE, "destitle");
+        desoff = attrs.getAttributeValue(NAME_SPACE, "desoff");
+        deson = attrs.getAttributeValue(NAME_SPACE, "deson");
     }
 
     /**
@@ -51,10 +69,10 @@ public class SettingItemView extends RelativeLayout {
         cb_box.setChecked(isCheck);
         if(isCheck){
             //开启
-            tv_des.setText("自动更新已开启");
+            tv_des.setText(deson);
         }else{
             //关闭
-            tv_des.setText("自动更新已关闭");
+            tv_des.setText(desoff);
         }
     }
 }

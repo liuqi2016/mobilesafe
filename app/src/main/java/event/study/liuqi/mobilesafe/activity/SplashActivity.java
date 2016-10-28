@@ -30,6 +30,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import event.study.liuqi.mobilesafe.R;
+import event.study.liuqi.mobilesafe.utils.ConstansValue;
+import event.study.liuqi.mobilesafe.utils.SpUtils;
 import event.study.liuqi.mobilesafe.utils.StreamUtil;
 import event.study.liuqi.mobilesafe.utils.ToastUtils;
 
@@ -202,8 +204,12 @@ public class SplashActivity extends AppCompatActivity {
         //2.获取本地应用基本信息 0
         getVersionCode();
         //3.检测版本号
-        checkVersion();
-
+        Boolean open_update = SpUtils.getboolean(this, ConstansValue.OPEN_UPDATE, false);
+        if(open_update){
+            checkVersion();
+        }else{
+            mHandler.sendEmptyMessageDelayed(INTOACTIVITY,4000);
+        }
     }
 
     /**
