@@ -44,7 +44,6 @@ public class SpUtils {
         sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
         sp.edit().putString(key,value).commit();
     }
-
     /**
      * 读取sp中的String变量
      * @param context 上下文环境
@@ -56,5 +55,12 @@ public class SpUtils {
             sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
         }
         return  sp.getString(key,defVaule);
+    }
+
+    public static void remove(Context context, String simnumber) {
+        if (sp == null){
+            sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
+        }
+        sp.edit().remove(simnumber).commit();
     }
 }

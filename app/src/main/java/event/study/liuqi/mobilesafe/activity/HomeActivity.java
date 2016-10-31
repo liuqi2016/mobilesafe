@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import event.study.liuqi.mobilesafe.R;
 import event.study.liuqi.mobilesafe.utils.ConstansValue;
+import event.study.liuqi.mobilesafe.utils.Md5Utils;
 import event.study.liuqi.mobilesafe.utils.SpUtils;
 import event.study.liuqi.mobilesafe.utils.ToastUtils;
 
@@ -126,7 +127,7 @@ public class HomeActivity extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final AlertDialog dialog = builder.create();
         View view = View.inflate(this, R.layout.passworddialog, null);
-        dialog.setView(view);
+        dialog.setView(view,0,0,0,0);
         dialog.show();
         final EditText et_pwd = (EditText) view.findViewById(R.id.et_pwd);
         final EditText et_confirm_pwd = (EditText) view.findViewById(R.id.et_confirm_pwd);
@@ -140,10 +141,11 @@ public class HomeActivity extends Activity {
                 String confirm_pwd = et_confirm_pwd.getText().toString();
                 if(!pwd.isEmpty() && !confirm_pwd.isEmpty()){
                 if(pwd.equals(confirm_pwd)){
-                    //保存到sp
-                    SpUtils.putString(getApplicationContext(),ConstansValue.MOBILESAFEPWD,pwd);
+                    //保存到sp，采用md5加密
+                    String md5pwd = Md5Utils.encoder(pwd);
+                    SpUtils.putString(getApplicationContext(),ConstansValue.MOBILESAFEPWD,md5pwd);
                     //进入设置界面
-                    Intent intent = new Intent(getApplicationContext(), SafeActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), SetupOverActivity.class);
                     startActivity(intent);
                     dialog.dismiss();
                 }else{
@@ -169,7 +171,7 @@ public class HomeActivity extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final AlertDialog dialog = builder.create();
         View view = View.inflate(this, R.layout.passworddialog2, null);
-        dialog.setView(view);
+        dialog.setView(view,0,0,0,0);
         dialog.show();
         //验证密码
         final EditText et_pwd = (EditText) view.findViewById(R.id.et_pwd);
@@ -178,12 +180,19 @@ public class HomeActivity extends Activity {
         bt_confirm_pwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String pwd = SpUtils.getString(getApplicationContext(), ConstansValue.MOBILESAFEPWD, "");
-                if(pwd.equals(et_pwd.getText().toString())){
-                    //进入设置界面
-                    Intent intent = new Intent(getApplicationContext(), SafeActivity.class);
-                    startActivity(intent);
-                    dialog.dismiss();
+                String md5pwd = SpUtils.getString(getApplicationContext(), ConstansValue.MOBILESAFEPWD, "");
+                if(md5pwd.equals(Md5Utils.encoder(et_pwd.getText().toString()))){
+                    //进入设置界面,判断是否开启防盗保护
+                    if(SpUtils.getboolean(getApplicationContext(),ConstansValue.SAFEON,false)) {
+                        Intent intent = new Intent(getApplicationContext(), SetupOverActivity.class);
+                        startActivity(intent);
+                        dialog.dismiss();
+                    }else{
+                        //进入设置界面
+                        Intent intent = new Intent(getApplicationContext(), Setup4Activity.class);
+                        startActivity(intent);
+                        dialog.dismiss();
+                    }
                 }else{
                     ToastUtils.show(getApplicationContext(),"密码错误");
                 }
