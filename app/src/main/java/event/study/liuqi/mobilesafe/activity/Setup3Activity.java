@@ -15,7 +15,7 @@ import event.study.liuqi.mobilesafe.utils.ToastUtils;
 /**
  * Created by liuqi on 2016/10/29.
  */
-public class Setup3Activity extends Activity{
+public class Setup3Activity extends BaseSetupActivity{
 
     private EditText et_contacts;
 
@@ -24,6 +24,30 @@ public class Setup3Activity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup3);
         initUi();
+    }
+
+    @Override
+    public void showNextPage() {
+        //判断是否有号码输入
+        String safeNumber = et_contacts.getText().toString();
+        if(!safeNumber.isEmpty()) {
+            //保存号码到sp
+            SpUtils.putString(getApplicationContext(), ConstansValue.SAFENUMBER,safeNumber);
+            Intent intent = new Intent(this, Setup4Activity.class);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(R.anim.next_in_anim,R.anim.next_out_anim);
+        }else{
+            ToastUtils.show(getApplicationContext(),"请输入安全号码");
+        }
+    }
+
+    @Override
+    public void showPrePage() {
+        Intent intent = new Intent(this, Setup2Activity.class);
+        startActivity(intent);
+        finish();
+        overridePendingTransition(R.anim.pre_in_anim,R.anim.pre_out_anim);
     }
 
     /**
@@ -48,31 +72,6 @@ public class Setup3Activity extends Activity{
         if(requestCode==0){
             String number = data.getStringExtra("number");
             et_contacts.setText(number);
-        }
-    }
-
-    /**
-     * 上一页
-     */
-    public void prePage(View v){
-        Intent intent = new Intent(this, Setup2Activity.class);
-        startActivity(intent);
-        finish();
-    }
-    /**
-     * 下一页
-     */
-    public void nextPage(View v){
-        //判断是否有号码输入
-        String safeNumber = et_contacts.getText().toString();
-        if(!safeNumber.isEmpty()) {
-            //保存号码到sp
-            SpUtils.putString(getApplicationContext(), ConstansValue.SAFENUMBER,safeNumber);
-            Intent intent = new Intent(this, Setup4Activity.class);
-            startActivity(intent);
-            finish();
-        }else{
-            ToastUtils.show(getApplicationContext(),"请输入安全号码");
         }
     }
 }

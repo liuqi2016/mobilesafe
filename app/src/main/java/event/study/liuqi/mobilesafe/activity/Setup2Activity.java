@@ -16,7 +16,7 @@ import event.study.liuqi.mobilesafe.view.SettingItemView;
 /**
  * Created by liuqi on 2016/10/29.
  */
-public class Setup2Activity extends Activity{
+public class Setup2Activity extends BaseSetupActivity{
 
     private SettingItemView bound_sim;
 
@@ -26,7 +26,26 @@ public class Setup2Activity extends Activity{
         setContentView(R.layout.activity_setup2);
         initUi();
     }
-
+    @Override
+    public void showNextPage() {
+        //判断是否绑定sim卡
+        String simnumber = SpUtils.getString(getApplicationContext(), ConstansValue.SIMNUMBER, "");
+        if(!simnumber.isEmpty()) {
+            Intent intent = new Intent(this, Setup3Activity.class);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(R.anim.next_in_anim,R.anim.next_out_anim);
+        }else{
+            ToastUtils.show(getApplicationContext(),"请先绑定sim卡");
+        }
+    }
+    @Override
+    public void showPrePage() {
+        Intent intent = new Intent(this, Setup1Activity.class);
+        startActivity(intent);
+        finish();
+        overridePendingTransition(R.anim.pre_in_anim,R.anim.pre_out_anim);
+    }
     /**
      * 初始化ui
      */
@@ -57,28 +76,5 @@ public class Setup2Activity extends Activity{
                 }
             }
         });
-    }
-
-    /**
-     * 上一页
-     */
-    public void prePage(View v){
-        Intent intent = new Intent(this, Setup1Activity.class);
-        startActivity(intent);
-        finish();
-    }
-    /**
-     * 下一页
-     */
-    public void nextPage(View v){
-        //判断是否绑定sim卡
-        String simnumber = SpUtils.getString(getApplicationContext(), ConstansValue.SIMNUMBER, "");
-        if(!simnumber.isEmpty()) {
-            Intent intent = new Intent(this, Setup3Activity.class);
-            startActivity(intent);
-            finish();
-        }else{
-            ToastUtils.show(getApplicationContext(),"请先绑定sim卡");
-        }
     }
  }

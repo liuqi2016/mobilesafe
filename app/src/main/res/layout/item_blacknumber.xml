@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+<TextView
+    android:textSize="18dp"
+    android:textColor="#000"
+    android:id="@+id/tv_blacknumber"
+    android:layout_alignParentLeft="true"
+    android:text="110"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+    <TextView
+        android:textSize="18dp"
+        android:textColor="#000"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/tv_blacknumber"
+        android:id="@+id/tv_blacknumbertype"
+        android:text="类型"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/main_clean_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+
+
+
+</RelativeLayout>

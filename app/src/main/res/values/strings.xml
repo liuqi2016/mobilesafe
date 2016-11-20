@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">mobilesafe</string>
+    <string name="sample_device_admin">黑马卫士超级管理权限</string>
+    <string name="sample_device_admin_description">一键锁屏,一键抹除数据</string>
 </resources>

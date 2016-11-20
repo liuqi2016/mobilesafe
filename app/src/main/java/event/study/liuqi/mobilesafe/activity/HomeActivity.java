@@ -1,14 +1,9 @@
 package event.study.liuqi.mobilesafe.activity;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.nfc.Tag;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -83,10 +78,19 @@ public class HomeActivity extends Activity {
                         showDialog();
                         break;
                     case 1:
+                        //通信卫士
+                        Intent intent = new Intent(getApplicationContext(), BlackNumberActivity.class);
+                        startActivity(intent);
                         break;
                     case 2:
+                        //软件管理
+                        Intent intent2 = new Intent(getApplicationContext(), ApplicationActivity.class);
+                        startActivity(intent2);
                         break;
                     case 3:
+                        //进程管理
+                        Intent intent3 = new Intent(getApplicationContext(), ProcessManager.class);
+                        startActivity(intent3);
                         break;
                     case 4:
                         break;
@@ -95,10 +99,12 @@ public class HomeActivity extends Activity {
                     case 6:
                         break;
                     case 7:
+                        Intent intent7 = new Intent(HomeActivity.this,AdvanceToolsActivity.class);
+                        startActivity(intent7);
                         break;
                     case 8:
-                        Intent intent = new Intent(HomeActivity.this, SettingActivity.class);
-                        startActivity(intent);
+                        Intent intent8 = new Intent(HomeActivity.this, SettingActivity.class);
+                        startActivity(intent8);
                         break;
                 }
 
@@ -189,7 +195,7 @@ public class HomeActivity extends Activity {
                         dialog.dismiss();
                     }else{
                         //进入设置界面
-                        Intent intent = new Intent(getApplicationContext(), Setup4Activity.class);
+                        Intent intent = new Intent(getApplicationContext(), Setup1Activity.class);
                         startActivity(intent);
                         dialog.dismiss();
                     }

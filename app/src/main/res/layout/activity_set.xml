@@ -20,6 +20,7 @@
     </event.study.liuqi.mobilesafe.view.SettingItemView>
     <event.study.liuqi.mobilesafe.view.SettingItemView
         xmlns:mobilesafe="http://schemas.android.com/apk/res/event.study.liuqi.mobilesafe"
+        android:id="@+id/show_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         mobilesafe:destitle="电话归属地显示设置"
@@ -27,4 +28,34 @@
         mobilesafe:deson="归属地显示已开启"
         >
     </event.study.liuqi.mobilesafe.view.SettingItemView>
+    <event.study.liuqi.mobilesafe.view.SettingClickView
+        xmlns:mobilesafe="http://schemas.android.com/apk/res/event.study.liuqi.mobilesafe"
+        android:id="@+id/address_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mobilesafe:itemtitle="设置归属地显示风格"
+        mobilesafe:itemparm="透明"
+        >
+    </event.study.liuqi.mobilesafe.view.SettingClickView>
+    <event.study.liuqi.mobilesafe.view.SettingClickView
+        xmlns:mobilesafe="http://schemas.android.com/apk/res/event.study.liuqi.mobilesafe"
+        android:id="@+id/address_place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mobilesafe:itemtitle="设置归属地框位置"
+        mobilesafe:itemparm="设置归属地框提示位置"
+        >
+    </event.study.liuqi.mobilesafe.view.SettingClickView>
+
+    <event.study.liuqi.mobilesafe.view.SettingItemView
+        xmlns:mobilesafe="http://schemas.android.com/apk/res/event.study.liuqi.mobilesafe"
+        android:id="@+id/black_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mobilesafe:destitle="黑名单拦截设置"
+        mobilesafe:desoff="黑名单拦截已关闭"
+        mobilesafe:deson="黑名单拦截已开启"
+        >
+    </event.study.liuqi.mobilesafe.view.SettingItemView>
+
 </LinearLayout>

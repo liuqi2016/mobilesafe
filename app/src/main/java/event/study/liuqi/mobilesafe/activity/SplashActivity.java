@@ -26,6 +26,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -186,6 +188,42 @@ public class SplashActivity extends AppCompatActivity {
         initData();
         //初始化动画
         initAnimation();
+        //初始化数据库
+        initDB();
+    }
+
+    /**
+     * 初始化数据库
+     */
+    private void initDB() {
+        copyDB("address.db");
+    }
+
+    /**
+     * 拷贝数据库，因为无法直接读取assets中的文件
+     */
+    private void copyDB(String dbname) {
+        //目的文件路径 /data/data/file
+        File file = new File(getFilesDir(), dbname);
+        Log.i(tag,"文件文件");
+        if(file.exists()){
+            return;
+        }
+        try {
+            Log.i(tag,"获取流");
+            //获取流
+            InputStream in = getAssets().open(dbname);
+            FileOutputStream out = new FileOutputStream(file);
+            byte[] buffer = new byte[1024];
+            int len = -1;
+            while ((len=in.read(buffer)) !=-1){
+                out.write(buffer,0,len);
+            }
+            out.close();
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

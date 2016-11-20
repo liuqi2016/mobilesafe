@@ -15,6 +15,19 @@ public class ConstansValue {
      */
     public static final String SAFEON = "safeon";
     /**
+     * addressplace初始化位置
+     */
+    public static final String LOCATION_X ="location_x" ;
+    public static final String LOCATION_Y ="location_y" ;
+    /**
+     * 黑名单类型
+     */
+    public static final String BLACKSTYPE ="blackstype" ;
+    /**
+     * 显示系统进程
+     */
+    public static final String SHOWSYSTEMPROCCESS ="showsystemproccess" ;
+    /**
      * 判断sim卡的绑定状态
      */
     public static String SIMNUMBER ="simnumber" ;
@@ -22,6 +35,10 @@ public class ConstansValue {
      * 判断密码是否正确
      */
     public static String SETUPOVER = "setupover";
+    //手机防盗密码
     public static String MOBILESAFEPWD = "mobilesafepwd";
+    //开启更新
     public static String OPEN_UPDATE = "open_update" ;
+    //归属地样式
+    public static String ADDRESSSTYLE="addressstyle";
 }

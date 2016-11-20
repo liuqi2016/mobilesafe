@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:text="高级工具"
+    style="@style/TitleStyle" />
+
+    <Button
+        android:text="归属地查询"
+        android:id="@+id/click1"
+        android:drawableLeft="@android:drawable/btn_star"
+        android:background="@drawable/selector_advancetools_bu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="短信备份"
+        android:id="@+id/click2"
+        android:drawableLeft="@android:drawable/btn_star"
+        android:background="@drawable/selector_advancetools_bu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="常用号码查询"
+        android:id="@+id/click3"
+        android:drawableLeft="@android:drawable/btn_star"
+        android:background="@drawable/selector_advancetools_bu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="程序锁"
+        android:id="@+id/click4"
+        android:drawableLeft="@android:drawable/btn_star"
+        android:background="@drawable/selector_advancetools_bu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

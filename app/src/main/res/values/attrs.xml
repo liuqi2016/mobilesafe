@@ -5,4 +5,8 @@
         <attr name="desoff" format="string" />
         <attr name="deson" format="string" />
     </declare-styleable>
+    <declare-styleable name="event.study.liuqi.mobilesafe.view.SettingClickView">
+        <attr name="itemtitle" format="string" />
+        <attr name="itemparm" format="string" />
+    </declare-styleable>
 </resources>

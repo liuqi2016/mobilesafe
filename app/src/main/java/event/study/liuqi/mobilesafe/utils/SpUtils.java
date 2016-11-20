@@ -1,6 +1,7 @@
 package event.study.liuqi.mobilesafe.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 /**
@@ -56,7 +57,28 @@ public class SpUtils {
         }
         return  sp.getString(key,defVaule);
     }
-
+    /**
+     * 写入int变量到sp中
+     * @param context 上下文环境
+     * @param key
+     * @param value
+     */
+    public static void putInt(Context context, String key, int value){
+        sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
+        sp.edit().putInt(key,value).commit();
+    }
+    /**
+     * 读取sp中的int变量
+     * @param context 上下文环境
+     * @param key
+     * @return int
+     */
+    public  static int getInt(Context context,String key,int defVaule){
+        if (sp == null){
+            sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
+        }
+        return  sp.getInt(key,defVaule);
+    }
     public static void remove(Context context, String simnumber) {
         if (sp == null){
             sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);

@@ -3,9 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 <TextView
-    android:textSize="20dp"
-    android:text="安全设置中心"
-    android:textColor="#000"
+    android:padding="2dp"
+    android:text="用户进程(2)"
+    android:background="#ccc"
+    android:id="@+id/tv_des"
+    android:textColor="#fff"
+    android:textSize="18sp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"/>
 </LinearLayout>
