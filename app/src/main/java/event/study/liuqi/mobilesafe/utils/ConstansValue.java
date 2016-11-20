@@ -28,6 +28,10 @@ public class ConstansValue {
      */
     public static final String SHOWSYSTEMPROCCESS ="showsystemproccess" ;
     /**
+     * 快捷方式
+     */
+    public static final String SHORTCUT = "shortcut";
+    /**
      * 判断sim卡的绑定状态
      */
     public static String SIMNUMBER ="simnumber" ;

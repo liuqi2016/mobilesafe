@@ -37,11 +37,15 @@ import event.study.liuqi.mobilesafe.utils.SpUtils;
 import event.study.liuqi.mobilesafe.utils.StreamUtil;
 import event.study.liuqi.mobilesafe.utils.ToastUtils;
 
+import static android.R.attr.name;
+
 public class SplashActivity extends AppCompatActivity {
 
     private TextView tv;
     private PackageManager pm;
     private String tag="SplashActivity";
+    //快捷方式权限
+    public static final String ACTION_ADD_SHORTCUT = "com.android.launcher.action.INSTALL_SHORTCUT";
     //版本code
     private int mversionCode;
     private Message msg;
@@ -190,6 +194,36 @@ public class SplashActivity extends AppCompatActivity {
         initAnimation();
         //初始化数据库
         initDB();
+        //添加快捷方式
+        addShortcut();
+    }
+
+    /**
+     * 创建快捷方式
+     */
+    private void addShortcut() {
+        Intent addShortcutIntent = new Intent(ACTION_ADD_SHORTCUT);
+        // 不允许重复创建
+        addShortcutIntent.putExtra("duplicate", false);// 经测试不是根据快捷方式的名字判断重复的
+        // 应该是根据快链的Intent来判断是否重复的,即Intent.EXTRA_SHORTCUT_INTENT字段的value
+        // 但是名称不同时，虽然有的手机系统会显示Toast提示重复，仍然会建立快链
+        // 屏幕上没有空间时会提示
+        // 注意：重复创建的行为MIUI和三星手机上不太一样，小米上似乎不能重复创建快捷方式
+        // 名字
+        addShortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "黑马手机卫士2016");
+        // 图标
+        addShortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+                Intent.ShortcutIconResource.fromContext(SplashActivity.this,
+                        R.drawable.ic_launcher));
+        // 设置关联程序
+        Intent launcherIntent = new Intent(Intent.ACTION_MAIN);
+        launcherIntent.setClass(SplashActivity.this, SplashActivity.class);
+        launcherIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        addShortcutIntent
+                .putExtra(Intent.EXTRA_SHORTCUT_INTENT, launcherIntent);
+        // 发送广播
+        sendBroadcast(addShortcutIntent);
+        SpUtils.putboolean(getApplicationContext(),ConstansValue.SHORTCUT,false);
     }
 
     /**
